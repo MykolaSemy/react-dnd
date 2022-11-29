@@ -1,13 +1,37 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@base {
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+}
+.app {
+  @apply w-full h-screen flex-col bg-slate-800 flex justify-start items-center flex-1;
+}
+.column {
+  @apply bg-white flex flex-col items-center justify-start min-h-[100px] rounded overflow-hidden mx-2 w-fit;
+}
+.add-task-wrapper{
+  @apply flex items-center justify-center px-1 pt-2 
+}
+.column-input {
+  @apply rounded rounded-tr-none border-r-0 rounded-br-none border-red-300 border-solid border-2 focus:outline-none p-1;
+}
+.column-add-task-button {
+  @apply duration-200 rounded-full rounded-tl-none rounded-bl-none border-2 text-white border-solid border-red-300 bg-red-300 p-2 hover:bg-transparent hover:text-red-300 disabled:bg-gray-200 disabled:border-red-300 disabled:cursor-not-allowed disabled:hover:text-white;
+}
+.column-title {
+  @apply bg-red-300 w-full text-center px-8 py-2 text-lg font-normal;
 }
