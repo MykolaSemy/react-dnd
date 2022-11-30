@@ -17,6 +17,8 @@
       monospace;
   }
 }
+
+
 .app {
   @apply w-full h-screen flex-col bg-slate-800 flex justify-start items-center flex-1;
 }

@@ -42,10 +42,10 @@ const App = () => {
     };
     setColumns(newColumns);
   };
-  const handleDeleteTask = (columnId: string, task: string) => {
+  const handleDeleteTask = (columnId: string, deleteTask: string) => {
     const newColumns = {
       ...columns,
-      [columnId]: columns[columnId].filter((task) => task !== task),
+      [columnId]: columns[columnId].filter((task) => task !== deleteTask),
     };
     setColumns(newColumns);
   };
