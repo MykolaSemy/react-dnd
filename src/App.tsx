@@ -1,14 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  DndContext,
-  DragOverlay,
-  KeyboardSensor,
-  MouseSensor,
-  TouchSensor,
-  useSensor,
-  useSensors,
-} from "@dnd-kit/core";
-import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
+import { DndContext, DragOverlay } from "@dnd-kit/core";
 import Column from "./components/Column";
 import Item from "./components/Item";
 import { columnsData } from "./services/columnsData";
@@ -18,6 +9,7 @@ import {
   handleDragOver,
   handleDragStart,
 } from "./utils/dragHandlers";
+import { useAllSensors } from "./hooks/useAllSensors";
 
 const App = () => {
   const [columns, setColumns] = useState<Record<string, string[]>>({});
@@ -27,27 +19,19 @@ const App = () => {
     setColumns(columnsData);
   }, []);
 
-  const sensors = useSensors(
-    useSensor(MouseSensor),
-    useSensor(TouchSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  );
+  const sensors = useAllSensors();
 
   const handleAddTask = (columnId: string, task: string) => {
-    const newColumns = {
+    setColumns({
       ...columns,
       [columnId]: [...columns[columnId], task],
-    };
-    setColumns(newColumns);
+    });
   };
   const handleDeleteTask = (columnId: string, deleteTask: string) => {
-    const newColumns = {
+    setColumns({
       ...columns,
       [columnId]: columns[columnId].filter((task) => task !== deleteTask),
-    };
-    setColumns(newColumns);
+    });
   };
 
   return (
